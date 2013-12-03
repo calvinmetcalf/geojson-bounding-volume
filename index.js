@@ -7,6 +7,7 @@ function caclulateVolume(geom) {
     coords = geom.geometries.map(function(g) {
       return caclulateVolume(g);
     });
+  }
 
   // Flatten coords as much as possible
   while (Array.isArray(coords[0][0])) {
