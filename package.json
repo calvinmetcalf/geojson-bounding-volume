@@ -1,0 +1,29 @@
+{
+  "name": "geojson-bounding-volume",
+  "version": "0.0.0",
+  "description": "minimum bounding volumes for geojson",
+  "main": "index.js",
+  "scripts": {
+    "test": "./node_modules/istanbul/lib/cli.js test ./node_modules/mocha/bin/_mocha test/test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/calvinmetcalf/geojson-bounding-volume.git"
+  },
+  "keywords": [
+    "geojson",
+    "geo",
+    "gis",
+    "spatial"
+  ],
+  "author": "Calvin Metcalf",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/calvinmetcalf/geojson-bounding-volume/issues"
+  },
+  "devDependencies": {
+    "chai": "~1.8.1",
+    "mocha": "~1.15.0",
+    "istanbul": "~0.1.45"
+  }
+}
