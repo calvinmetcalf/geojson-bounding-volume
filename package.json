@@ -1,6 +1,6 @@
 {
   "name": "geojson-bounding-volume",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "minimum bounding volumes for geojson",
   "main": "index.js",
   "scripts": {
