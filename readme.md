@@ -1,8 +1,13 @@
 GeoJSON Minimum Bounding Volume
 ===
 
-First stab at a library to calculate minimum bounding volumes for geojson
+Calculates minimum bounding volumes for GeoJSON, returns bboxes in the format
 
-todo:
+```json
+[
+  [min1, min2, ...],
+  [max1, max2, ...],
+]
+```
 
-- tests
+It is agnostic as to how many coordiantes the geojson has and will use the coordinates with the lowest dimentionality.
