@@ -4,7 +4,7 @@
   "description": "minimum bounding volumes for geojson",
   "main": "index.js",
   "scripts": {
-    "test": "./node_modules/istanbul/lib/cli.js test ./node_modules/mocha/bin/_mocha test/test.js"
+    "test": "istanbul test _mocha test/*.js"
   },
   "repository": {
     "type": "git",
@@ -22,8 +22,8 @@
     "url": "https://github.com/calvinmetcalf/geojson-bounding-volume/issues"
   },
   "devDependencies": {
-    "chai": "~1.8.1",
-    "mocha": "~1.15.0",
-    "istanbul": "~0.1.45"
+    "chai": "^1.9.1",
+    "mocha": "^1.21.4",
+    "istanbul": "^0.3.0"
   }
 }

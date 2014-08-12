@@ -1,35 +1,48 @@
+module.exports = caclulateVolume;
 function caclulateVolume(geom) {
   var coords = geom.coordinates;
   if (geom.type === 'Point') {
-    return [coords, coords];
+    return slice(coords);
   }
   if (geom.type === 'GeometryCollection') {
-    coords = geom.geometries.map(function(g) {
-      return caclulateVolume(g);
-    });
+    var glen = geom.geometries.length;
+    coords = new Array(glen);
+    var gi = -1;
+    while (++gi < glen) {
+      coords[gi] = caclulateVolume(geom.geometries[gi]);
+    }
   }
 
   // Flatten coords as much as possible
   while (Array.isArray(coords[0][0])) {
-    coords = coords.reduce(function(a, b) {
-      return a.concat(b);
-    });
-  };
+    coords =  Array.prototype.concat.apply([], coords);
+  }
 
   // Calculate the enclosing bounding box of all coordinates
-  return coords.reduce(function (acc, coord) {
-    if (acc === null) {
-      return [coord, coord];
+  var j = 0;
+  var acc = slice(coords[0]);
+  var coordsLen = coords.length;
+  var coord, i;
+  var len = acc[0].length;
+  while (++j < coordsLen) {
+    i = -1;
+    while (++i < len) {
+      if (coords[j][i] < acc[0][i]) {
+        acc[0][i] = coords[j][i];
+      }
+      if (coords[j][i] > acc[1][i]) {
+        acc[1][i] = coords[j][i];
+      } 
     }
-    return [
-    acc[0].map(function(a,i){
-      return Math.min(a,coord[i]);
-    }),
-    acc[1].map(function(a,i){
-      return Math.max(a,coord[i]);
-    })
-    ];
-  }, null);
-};
-
-module.exports = caclulateVolume;
+  }
+  return acc;
+}
+function slice(array) {
+  var i = -1;
+  var len = array.length;
+  var out = [new Array(len), new Array(len)];
+  while (++i < len) {
+    out[0][i] = out[1][i] = array[i];
+  }
+  return out;
+}
