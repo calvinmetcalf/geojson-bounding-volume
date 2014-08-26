@@ -1,7 +1,7 @@
 GeoJSON Minimum Bounding Volume
 ===
 
-Calculates minimum bounding volumes for GeoJSON, returns bboxes in the format
+Calculates minimum bounding volumes for GeoJSON, returns bboxen (strictly axis aligned bounding boxen) in the format
 
 ```json
 [
@@ -10,4 +10,4 @@ Calculates minimum bounding volumes for GeoJSON, returns bboxes in the format
 ]
 ```
 
-It is agnostic as to how many coordiantes the geojson has and will use the coordinates with the lowest dimentionality.
+It is agnostic as to how many coordinates the geojson has and will use the coordinates with the lowest dimensionality.
