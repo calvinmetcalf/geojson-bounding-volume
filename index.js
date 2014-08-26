@@ -1,7 +1,7 @@
 module.exports = caclulateVolume;
 function caclulateVolume(geom) {
   var coords = geom.coordinates;
-  var i, len, ocoords;
+  var i, len, tempCoords;
   if (geom.type === 'Point') {
     // the mins and maxes of a point are both the point
     return slice(geom.coordinates);
@@ -12,10 +12,10 @@ function caclulateVolume(geom) {
   } else if (geom.type === 'MultiPolygon') {
     i = -1;
     len = coords.length;
-    ocoords = coords;
+    tempCoords = coords;
     coords = new Array(len);
     while (++i < len) {
-      coords[i] = ocoords[i][0];
+      coords[i] = tempCoords[i][0];
     }
   }
   if (geom.type === 'GeometryCollection') {
@@ -37,7 +37,7 @@ function caclulateVolume(geom) {
           }
           break;
         case 'GeometryCollection':
-          // yeah recursive, but will be just as recursive as the dat is deep
+          // yeah recursive, but will be less recursive then the data 
           coords[gi] = caclulateVolume(geom.geometries[gi]);
           break;
         case 'Polygon':
@@ -75,7 +75,8 @@ function calculate(coords){
   var len;
   while (++j < coordsLen) {
     i = -1;
-    len = min(min(acc[0].length, acc[1].length), coords[j].length);
+    //acc[0] and acc[1] will always be the same length
+    len = min(acc[0].length, coords[j].length);
     while (++i < len) {
       if (coords[j][i] < acc[0][i]) {
         acc[0][i] = coords[j][i];
